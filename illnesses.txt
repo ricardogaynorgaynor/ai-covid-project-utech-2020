@@ -1,0 +1,15 @@
+'Pregnancy'.
+'Sickle Cell Disease'.
+'Heart Condition'.
+'Weakened Immune System'.
+'Obesity'.
+'Smoking'.
+'Diabetes'.
+'Asthma'.
+'Cerebrovascular Disease'.
+'Cystic Fibrosis'.
+'Hypertension or High Blood Pressure'.
+'Neurologic Conditions'.
+'Liver Disease'.
+'Pulmonary Fibrosis'.
+'Thalassemia'.

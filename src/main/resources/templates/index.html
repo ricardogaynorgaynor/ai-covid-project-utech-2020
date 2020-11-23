@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.untraq.net.nz/thymeleaf/layout"
+>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta th:name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta th:name="description" content="Magnifica Questionnaire Form Wizard includes Corona Virus Covid-19 questionnaire">
+    <meta th:name="author" content="Ansonika">
+    <title>ARTIFICIAL INTELLIGENCE</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/menu.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/vendors.css}" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="@{/css/custom.css}" rel="stylesheet">
+
+    <!-- MODERNIZR MENU -->
+    <script src="@{/js/modernizr.js}"></script>
+
+</head>
+
+<body>
+
+<div id="preloader">
+    <div data-loader="circle-side"></div>
+</div><!-- /Preload -->
+
+<div id="loader_form">
+    <div data-loader="circle-side-2"></div>
+</div><!-- /loader_form -->
+
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <a href="index.html"><img th:src="@{/images/covid.jpg}" alt="" width="178" height="45" class="d-none d-md-block"><img src="img/logo_mobile.svg" alt="" width="62" height="45" class="d-block d-md-none"></a>
+            </div>
+            <div class="col-9">
+                <div id="social">
+                    <ul>
+                        <li><a href="#0"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#0"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#0"><i class="icon-google"></i></a></li>
+                        <li><a href="#0"><i class="icon-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /social -->
+                <a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
+                <!-- /menu button -->
+                <nav>
+                    <ul class="cd-primary-nav">
+                        <li><a href="without_branch_layout_2.html" class="animated_link">Questionnaire without branch</a></li>
+                        <li><a href="with_branch_layout_2.html" class="animated_link">Questionnaire with branch</a></li>
+                        <li><a href="prevention.html" class="animated_link">Prevention Tips</a></li>
+                        <li><a href="faq.html" class="animated_link">Faq</a></li>
+                        <li><a href="contacts.html" class="animated_link">Contact Us</a></li>
+                        <li><a href="https://1.envato.market/OAmnr" class="animated_link" target="_parent">Purchase this template</a><li>
+                    </ul>
+                </nav>
+                <!-- /menu -->
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+</header>
+<!-- /Header -->
+
+<div class="container">
+    <div id="form_container">
+        <div class="row no-gutters">
+            <div class="col-lg-4">
+                <div id="left_form">
+                    <figure><img th:src="@{/images/utech-logo.png}" alt="" width="120" height="150"></figure>
+                    <h2>ARTIFICIAL INTELLIGENCE <span>Prolog/Python Group Project</span></h2>
+                    <p>COVID-19 expert System</p>
+                    <a href="" class="btn_1 rounded yellow purchase" target="_parent">Generate Report</a>
+                    <hr/>
+                    <span  data-toggle="modal" data-target="#add-symptom" class="btn_1 rounded yellow purchase">Add Symptoms</span>
+                    <a href="#0" id="more_info" data-toggle="modal" data-target="#more-info"><i class="pe-7s-info"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div id="wizard_container">
+                    <div id="top-wizard">
+                        <div id="progressbar"></div>
+                        <span id="location"></span>
+                    </div>
+                    <!-- /top-wizard -->
+                    <form th:object="${covidInfo}" th:method="post" th:action="@{/process/data}">
+                        <input id="website" th:name="website" type="text" value="">
+                        <!-- Leave for security protection, read docs for details -->
+                        <div id="middle-wizard">
+
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Please enter your body temperature in  degrees Celsius (°C)</h3>
+                                <div class="form-group add_top_30">
+                                    <label for="temperature">Temperature</label>
+                                    <input type="number" name="temperature" id="temperature" class="form-control required">
+                                </div>
+                                <!-- /row-->
+                            </div>
+
+
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Please select at least one known illness from the list below</h3>
+                                <div class="row">
+                                    <div class="form-group col-lg-6" th:each="illness : ${illnesses}">
+                                        <label class="container_check version_2"><span th:text="${illness.name}"></span>
+                                            <input type="checkbox" th:name="illnesses" th:value="${illness.id}" class="required">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- /row -->
+                            </div>
+                            <!-- /step-->
+
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Please select your gender</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Male
+                                        <input type="radio" name="gender" value="Male" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">Female
+                                        <input type="radio" name="gender" value="Female" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- /step-->
+
+                            <!-- /Start Branch ============================== -->
+                            <div class="step">
+                                <label class="custom add_top_10"></label>
+                                <h3 class="main_question"><i class="arrow_right"></i>Are you experiencing any difficulty in breathing?</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Yes
+                                        <input type="radio" name="difficultyBreathing" value="Yes" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">No
+                                        <input type="radio" name="difficultyBreathing" value="No" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <small>* Start branch radio based </small>
+                            </div>
+
+
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Do you have a runny nose?</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Yes
+                                        <input type="radio" name="runnyNose" value="Yes" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">No
+                                        <input type="radio" name="runnyNose" value="No" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- /step-->
+
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Are you experiencing muscle aches, weakness, or lightheadedness?</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Yes
+                                        <input type="radio" name="aches" value="Yes" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">No
+                                        <input type="radio" name="aches" value="No" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- /step-->
+
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Are you having diarrhea, stomach pain, vomiting?</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Yes
+                                        <input type="radio" name="dspv" value="Yes" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">No
+                                        <input type="radio" name="dspv" value="No" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- /step-->
+
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Please fill with your personal data</h3>
+                                <div class="form-group add_top_30">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" name="firstName" id="first_name" class="form-control required">
+                                </div>
+                                <div class="form-group add_top_30">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" name="lastName" id="last_name" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" name="email" id="email" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobile">Phone</label>
+                                    <input type="text" name="mobile" id="mobile" class="form-control required">
+                                </div>
+                                <!-- /row-->
+                            </div>
+                            <!-- /step-->
+
+                            <div class="submit step" id="end">
+                                <div class="summary">
+                                    <div class="wrapper">
+                                        <h3>Thank your for your time<br><span id="name_field"></span>!</h3>
+                                        <p>We will contact you shortly at the following email address <strong id="email_field"></strong> and if necessary take measures.</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="form-group terms">
+                                            <label class="container_check">Please accept our <a href="#" data-toggle="modal" data-target="#terms-txt">Terms and conditions</a> before Submit
+                                                <input type="checkbox" name="terms" value="Yes" class="required">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /step last-->
+
+                        </div>
+                        <!-- /middle-wizard -->
+                        <div id="bottom-wizard">
+                            <button type="button" th:name="backward" class="backward">Prev</button>
+                            <button type="button" th:name="forward" class="forward">Next</button>
+                            <button type="submit" th:name="submit" class="submit">Submit</button>
+                        </div>
+                        <!-- /bottom-wizard -->
+                    </form>
+                </div>
+                <!-- /Wizard container -->
+            </div>
+        </div><!-- /Row -->
+    </div><!-- /Form_container -->
+</div>
+<!-- /container -->
+
+<div class="container">
+    <footer id="home" class="clearfix">
+        <p>© 2020 Artificial Intelligence</p>
+    </footer>
+    <!-- end footer-->
+</div>
+<!-- /container -->
+
+<div class="cd-overlay-nav">
+    <span></span>
+</div>
+<!-- /cd-overlay-nav -->
+<div class="cd-overlay-content">
+    <span></span>
+</div>
+<!-- /cd-overlay-content -->
+
+<!-- Modal terms -->
+<div class="modal fade" id="terms-txt" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="termsLabel">Terms and conditions</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, in porro albucius qui, in <strong>nec quod novum accumsan</strong>, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+                <p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus. Lorem ipsum dolor sit amet, <strong>in porro albucius qui</strong>, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+                <p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn_1" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal info -->
+<div class="modal fade" id="more-info" tabindex="-1" role="dialog" aria-labelledby="more-infoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="more-infoLabel">Group Members</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    <li>Member 1</li>
+                    <li>Member 2</li>
+                    <li>Member 3</li>
+                    <li>Member 4</li>
+                    <li>Member 5</li>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn_1" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+
+<div class="modal fade" id="add-symptom" tabindex="-1" role="dialog" aria-labelledby="more-infoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="more-infoLabel">Add Symptoms</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body"> 
+              
+              <form th:action="@{/save/symptom}" method="POST">
+              
+              <div class="form-group add_top_30">
+                    <label for="temperature">Symptom</label>
+                    <input type="text" name="symptom" id="symptom" class="form-control required">
+              </div>
+                
+             <button type="submit" th:name="submit" class="submit">Save Symptom</button>
+                
+              
+              </form>
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn_1" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!-- /.modal -->
+
+<!-- COMMON SCRIPTS -->
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/common_scripts.min.js}"></script>
+<script th:src="@{/js/velocity.min.js}"></script>
+<script th:src="@{/js/common_functions.js}"></script>
+
+<!-- Wizard script with branch -->
+<script th:src="@{/js/wizard_with_branch.js}"></script>
+
+</body>
+</html>
