@@ -34,16 +34,29 @@ public class AnalysisService {
     } 
     
     public List<KnownIllness> getKnownIllnesses(){
-    	List<KnownIllness> illnesses = new ArrayList<>(); 
+    	List<KnownIllness> illnessesListFinal = new ArrayList<>(); 
+    	 Query query = new Query("consult", new Term[] {new Atom("test2.pl")});
+         System.out.println( "consult " + (query.hasSolution() ? "succeeded" : "failed"));
+         String illnesses = Query.oneSolution("getIllnesses(X)").get("X").toString(); 
+         String[] illnessList = illnesses.replace("[", "").replace("]", "")
+        		 .split(",");
+         for(int i = 0; i < illnessList.length; i++) {
+        	 illnessesListFinal.add(new KnownIllness(Long.parseLong(String.valueOf((i+1))), illnessList[i].replace("'", "")));
+         }
+       return illnessesListFinal; 
+    }
+    
+    public List<String> getSymptoms(){
+    	List<String> symptomsListFinal = new ArrayList<>(); 
     	 Query query = new Query("consult", new Term[] {new Atom("test2.pl")});
          System.out.println( "consult " + (query.hasSolution() ? "succeeded" : "failed"));
          String symptoms = Query.oneSolution("getSymptoms(X)").get("X").toString(); 
          String[] symptomsList = symptoms.replace("[", "").replace("]", "")
         		 .split(",");
          for(int i = 0; i < symptomsList.length; i++) {
-        	 illnesses.add(new KnownIllness(Long.parseLong(String.valueOf((i+1))), symptomsList[i].replace("'", "")));
+        	 symptomsListFinal.add(symptomsList[i].replace("'", ""));
          }
-       return illnesses; 
+       return symptomsListFinal;  
     }
     
     public void initializeIllnesses() {
@@ -53,6 +66,14 @@ public class AnalysisService {
     		Query.oneSolution("initializeIllness('"+i.getName()+"')"); 
     	});
     }
+    
+    public void initializeSymptoms() {
+   	 Query query = new Query("consult", new Term[] {new Atom("test2.pl")});
+   	 System.out.println( "consult " + (query.hasSolution() ? "succeeded" : "failed"));
+   	this.getSymptoms().forEach(s -> {
+   		Query.oneSolution("initializeSymptoms('"+s+"')"); 
+   	});
+   }
     
     public void addSymptom(final String symptom) {
     	 Query query = new Query("consult", new Term[] {new Atom("test2.pl")});
@@ -68,10 +89,10 @@ public class AnalysisService {
 
     public String performAnalysis(final CovidInfo covidInfo) {
     	this.initializeIllnesses(); // initialize the illness facts
+    	this.initializeSymptoms(); // initialize symptoms
         List<String> illnesses = new ArrayList<>();
         covidInfo.getIllnesses().forEach(i -> illnesses.add(i.getName()));
         String delimitedIllnesses = String.join("%", illnesses);
-        String illnessPlaceHolder = "m";
         //String queryString = "performAnalysis("+"'"+illnessPlaceHolder+ "','" +covidInfo.getTemperature()+ "','" +covidInfo.getAge()+ "','" +covidInfo.getGender()+ "','" +covidInfo.getDifficultyBreathing()+ "','" +covidInfo.getRunnyNose()+ "','" +covidInfo.getAches()+ "','" +covidInfo.getDspv()+ "'," +"R)";
         //System.out.println(queryString);
         Query query = new Query("consult", new Term[] {new Atom("test2.pl")});

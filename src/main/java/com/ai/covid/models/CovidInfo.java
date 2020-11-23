@@ -17,6 +17,7 @@ public class CovidInfo {
     private String runnyNose;
     private String aches;
     private String dspv;
+    private String riskMessage;
 //    private String shortnessOfBreath;
 //    private String chestPainOrPressure;
 //    private String lossOfMovement;
@@ -145,4 +146,30 @@ public class CovidInfo {
     public void setDspv(String dspv) {
         this.dspv = dspv;
     }
+    
+    
+
+	public String getRiskMessage() {
+		return riskMessage;
+	}
+
+	public void setRiskMessage(String riskMessage) {
+		this.riskMessage = riskMessage;
+	}
+
+	@Override
+	public String toString() {
+		return "CovidInfo [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", mobile="
+				+ mobile + ", terms=" + terms + ", temperature=" + temperature + ", age=" + age + ", illnesses="
+				+ illnesses + ", gender=" + gender + ", difficultyBreathing=" + difficultyBreathing + ", runnyNose="
+				+ runnyNose + ", aches=" + aches + ", dspv=" + dspv + ", getFirstName()=" + getFirstName()
+				+ ", getLastName()=" + getLastName() + ", getEmail()=" + getEmail() + ", getMobile()=" + getMobile()
+				+ ", getTerms()=" + getTerms() + ", getTemperature()=" + getTemperature() + ", getAge()=" + getAge()
+				+ ", getIllnesses()=" + getIllnesses() + ", getGender()=" + getGender() + ", getDifficultyBreathing()="
+				+ getDifficultyBreathing() + ", getRunnyNose()=" + getRunnyNose() + ", getAches()=" + getAches()
+				+ ", getDspv()=" + getDspv() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+    
+    
 }

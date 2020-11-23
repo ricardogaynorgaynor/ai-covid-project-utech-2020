@@ -1,6 +1,8 @@
 :- dynamic illnesses/1.
+:- dynamic symptoms/1.
 
 illnesses(none).
+symptoms(none).
 
 performAnalysis(Illness, Temperature, Age, Gender, DifficultyBreathing, RunnyNose, Aches, Dspv, R):-
 				(DifficultyBreathing == 'yes' -> DifficultyBreathingVal is 1; DifficultyBreathingVal is 0),
@@ -8,9 +10,11 @@ performAnalysis(Illness, Temperature, Age, Gender, DifficultyBreathing, RunnyNos
 				(Aches == 'yes' -> AchesVal is 1; AchesVal is 0),
 				(Temperature > 100.3 -> FeverVal is 1; FeverVal is 0),
 				(Dspv == 'yes' -> DspvVal is 1; DspvVal is 0),
-				RiskScore is Dspv+Aches+RunnyNose+DifficultyBreathing,
-				(FeverVal = 1, RiskScore > 0) -> R = "Your risk is very high";
-				(FeverVal = 1, RiskScore < 1) -> R = "Your are at risk";
+				(RiskScore is DspvVal+AchesVal+RunnyNoseVal+DifficultyBreathingVal),
+				determine_risk_val(FeverVal, RiskScore, R).
+
+determine_risk_val(FeverVal, RiskScore, R):- (FeverVal == 1, RiskScore > 0) -> R = "Your risk is very high";
+				(FeverVal == 1, RiskScore < 1) -> R = "Your are at risk";
 				(RiskScore > 0) -> R = "You are at risk";
 				R = "You're not at risk".
 
@@ -21,9 +25,18 @@ performAnalysis(Illness, Temperature, Age, Gender, DifficultyBreathing, RunnyNos
 
 initializeIllness(I) :- (illnesses(I) -> nl,write('Illness already recorded');
                        assert(illnesses(I)), write('Illness added successfully')).
+                       
+initializeSymptoms(I) :- (symptoms(I) -> nl,write('Symptom already recorded');
+                       assert(symptoms(I)), write('Symptom added successfully')).
 
-getSymptoms(X) :-
+getIllnesses(X) :-
     open('illnesses.txt', read, Str),
+    read_file(Str,Lines),
+    close(Str),
+    X = Lines.
+    
+getSymptoms(X) :-
+    open('symptoms.txt', read, Str),
     read_file(Str,Lines),
     close(Str),
     X = Lines.

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller("/")
 public class HomeController {
 
-    @Autowired
+    @Autowired 
     private AnalysisService analysisService = new AnalysisService();
  
     @GetMapping("/") 
@@ -35,6 +35,19 @@ public class HomeController {
         	model.addAttribute("riskVal", (String) (request.getSession().getAttribute("riskVal")));
         }
         return "index";
+    }
+    
+     
+    @GetMapping("/result") 
+    public String result(Model model, HttpServletRequest request){
+        model.addAttribute("illnesses", analysisService.getKnownIllnesses());
+        CovidInfo covidInfo = (CovidInfo) request.getSession().getAttribute("covidInfo");
+        if(covidInfo != null) {
+            System.out.print(covidInfo.toString());  
+        	model.addAttribute("covidInfo", covidInfo);
+        	
+        }
+        return "result";
     }
 
     @PostMapping(value = "/process/data", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -58,9 +71,12 @@ public class HomeController {
                         .findFirst() 
                         .orElse(null)));
         covidInfo.setIllnesses(underlyingConditions);
+        CovidInfo covTemp = covidInfo;
         String result = analysisService.performAnalysis(covidInfo);
-        request.getSession().setAttribute("riskVal", result); 
-        return "redirect:/";
+        //request.getSession().setAttribute("riskVal", result); 
+        covTemp.setRiskMessage(result); 
+        request.getSession().setAttribute("covidInfo", covTemp);
+        return "redirect:/result";
     }
     
     @PostMapping(value = "/save/symptom", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
