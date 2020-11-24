@@ -66,4 +66,4 @@ member)
 There will be an additional 10% for groups who provide a graphical user interface (GUI) for this system.
 Marks will be subtracted for late assignments at a rate of 7.5% per day. Assignments more than one week late
 will not be accepted.
-<img src="https://i1.wp.com/electrek.co/wp-content/uploads/sites/3/2020/06/Jaguar_I-PACE_S-blue-1.jpg?w=1500&quality=82&strip=all&ssl=1"></img>
+<img src="http://coulsonsloan.com/public/covid/1.PNG"></img>
