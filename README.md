@@ -66,4 +66,71 @@ member)
 There will be an additional 10% for groups who provide a graphical user interface (GUI) for this system.
 Marks will be subtracted for late assignments at a rate of 7.5% per day. Assignments more than one week late
 will not be accepted.
+
+<h2>Group Members</h2>
+
+ <ol>
+<l1><h4>Matthew Robotham</h4></l1>
+<l1><h4>Vijay Green</h4></l1>
+<l1><h4>Shaneka Sydial</h4></l1>
+<l1><h4>Rasheika Panton</h4></l1>
+<l1><h4>Ricardo Gaynor</h4></l1>
+</ol>
+
+<h2>Technology Used</h2>
+
+<ol>
+<li>Java - JPL Prolog bridge Library</l1>
+<li>Prolog</li>
+<li>Spring boot</li>
+<li>H2 Database</li>
+</ol>
+
+<img src="https://miro.medium.com/max/1400/0*u2NEmijD3rg3m1La.png" />
+  
+  
+
+<h1>sytem Design</h1>
+
+<h4></h4>
 <img src="http://coulsonsloan.com/public/covid/1.PNG"></img>
+
+<h4>Add Symptoms - Less common, Common or Serious to the knowledge database</h4>
+<img src="http://coulsonsloan.com/public/covid/add symptoms.PNG"></img>
+
+
+<h4>Add Symptoms Cont'd</h4>
+<img src="http://coulsonsloan.com/public/covid/add symptoms2.PNG"></img>
+
+
+<h4>Enter your Age</h4>
+<img src="http://coulsonsloan.com/public/covid/age.PNG"></img>
+
+
+<h4>Members</h4>
+<img src="http://coulsonsloan.com/public/covid/members.PNG"></img>
+
+<h4>Analysis result</h4>
+<img src="http://coulsonsloan.com/public/covid/results.PNG"></img>
+
+<h4>Risk Score</h4>
+<img src="http://coulsonsloan.com/public/covid/riskscrore.PNG"></img>
+
+<h4>Summary</h4>
+<img src="http://coulsonsloan.com/public/covid/summary.PNG"></img>
+
+<h4>Emailed Results</h4>
+<img src="http://coulsonsloan.com/public/covid/email.PNG"></img>
+
+<h4>emailed Results cont'd</h4>
+<img src="http://coulsonsloan.com/public/covid/email_data.PNG.PNG"></img>
+
+<h4>Confirm your Info.</h4>
+<img src="http://coulsonsloan.com/public/covid/confirmation.PNG"></img>
+
+
+<H><H1>RISK FACTORS:</H1></B>
+
+
+
+
