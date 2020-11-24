@@ -5,11 +5,19 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
 
+@Table(name = "illnesses")
+@Entity
 public class KnownIllness {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long pkID;
+    @Transient
     private Long id;
+    @Column
     private String name;
 
 

@@ -27,6 +27,7 @@
     <link th:href="@{/css/menu.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <link th:href="@{/css/vendors.css}" rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- YOUR CUSTOM CSS -->
     <link href="@{/css/custom.css}" rel="stylesheet">
@@ -63,117 +64,27 @@
             <div class="col-lg-4">
                 <div id="left_form">
                     <figure><img th:src="@{/images/utech-logo.png}" alt="" width="120" height="150"></figure>
-                    <h2>System result Summary<span></span></h2>
+                    <h2>System result History<span></span></h2>
                     <p>COVID-19 expert System</p>
                     <a th:href="@{/}" class="btn_1 rounded yellow purchase" target="_parent">Go Back</a>
                 </div>
             </div>
             <div class="col-lg-8">
-           
-            
+
+                <div class="row" style="padding:10px;">
                 
-                <div class="row">
-                
-                <div class="col-md-12">
-                                
-                <table class="table table-bordered">
-				    <thead>
-				      <tr>
-				        <th>Heading</th>
-				        <th>Info</th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				      <tr>
-				        <td>First Name</td>
-				        <td th:text="${covidInfo.firstName}"></td>
-				      </tr>
-				      <tr>
-				        <td>Last Name</td>
-				        <td th:text="${covidInfo.lastName}"></td>
-				      </tr>
-				      <tr>
-				        <td>Age</td>
-				        <td th:text="${covidInfo.age}"></td>
-				      </tr>
-				      <tr>
-				        <td>Gender</td>
-				        <td th:text="${covidInfo.gender}"></td>
-				      </tr>
-				      <tr>
-				        <td>Email Address</td>
-				        <td th:text="${covidInfo.email}"></td>
-				      </tr>
-					  <tr>
-						  <td>Telephone Number</td>
-						  <td th:text="${covidInfo.mobile}"></td>
-					  </tr>
-
-				      <tr>
-				        <td>Temperature</td>
-				        <td th:text="${covidInfo.temperature}"></td>
-				      </tr>
-				      <tr>
-				        <td>known illnesses</td>
-				        <td>
-				        <ol th:each="illness : ${covidInfo.illnesses}">
-				        	<li th:text="${illness.name}"></li>
-				        </ol>
-				        </td>
-				      </tr>
-				      <tr>
-				        <td>Difficulty in breathing</td>
-				        <td th:text="${covidInfo.difficultyBreathing}"></td>
-				      </tr>
-				       <tr>
-				        <td>Runny Nose</td>
-				        <td th:text="${covidInfo.runnyNose}"></td>
-				      </tr>
-				      
-				      <tr>
-				        <td> muscle aches, weakness, or lightheadedness?</td>
-				        <td th:text="${covidInfo.aches}"></td>
-				      </tr>
-				      
-				       <tr>
-				        <td>Diarrhea, stomach pain, vomiting?</td>
-				        <td th:text="${covidInfo.dspv}"></td>
-				      </tr>
-
-					  <tr>
-						  <td>Loss of Smell</td>
-						  <td th:text="${covidInfo.lossOfSmell}"></td>
-					  </tr>
-
-					  <tr>
-						  <td>Loss of Taste</td>
-						  <td th:text="${covidInfo.lossOfTaste}"></td>
-					  </tr>
-
-					  <tr>
-						  <td>Dry Cough</td>
-						  <td th:text="${covidInfo.dryCaugh}"></td>
-					  </tr>
-
-					  <tr>
-						  <td>Fever</td>
-						  <td th:text="${covidInfo.fever}"></td>
-					  </tr>
-
-					  <tr>
-						  <td>Skin Rash</td>
-						  <td th:text="${covidInfo.skinRash}"></td>
-					  </tr>
-				      
-				    </tbody>
-				  </table>
-                
-                <div style="padding:10px;">
-                	<span style="font-size:20px">Based on the information above, </span> 
-                	<span style="font-size:20px" th:text="${covidInfo.riskMessage}"></span> 
-                </div>
-                
-                </div>
+					<div class="col-md-4" th:each="history : ${histories}">
+						<div class="card">
+						<img width="120" height="200" class="card-img-top" th:src="@{/images/male.png}" alt="Card image" style="width:100%">
+						<div class="card-body">
+							<center>
+								<h5 class="card-title" th:text="${history.getFullName()}"></h5>
+								<p class="card-text" th:text="${history.riskMessage}"></p>
+								<a th:href="@{/result/by/user/{id}(id=${history.id})}" class="btn btn-primary stretched-link">View More</a>
+							</center>
+						</div>
+						</div>
+					</div>
                 
                 </div>
                 <!-- /Wizard container -->

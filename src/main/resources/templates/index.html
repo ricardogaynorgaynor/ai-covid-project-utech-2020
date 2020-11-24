@@ -22,6 +22,7 @@
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- BASE CSS -->
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/menu.css}" rel="stylesheet">
@@ -52,30 +53,6 @@
             <div class="col-3">
                 <a href="index.html"><img th:src="@{/images/covid.jpg}" alt="" width="178" height="45" class="d-none d-md-block"><img src="img/logo_mobile.svg" alt="" width="62" height="45" class="d-block d-md-none"></a>
             </div>
-            <div class="col-9">
-                <div id="social">
-                    <ul>
-                        <li><a href="#0"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#0"><i class="icon-twitter"></i></a></li>
-                        <li><a href="#0"><i class="icon-google"></i></a></li>
-                        <li><a href="#0"><i class="icon-linkedin"></i></a></li>
-                    </ul>
-                </div>
-                <!-- /social -->
-                <a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
-                <!-- /menu button -->
-                <nav>
-                    <ul class="cd-primary-nav">
-                        <li><a href="without_branch_layout_2.html" class="animated_link">Questionnaire without branch</a></li>
-                        <li><a href="with_branch_layout_2.html" class="animated_link">Questionnaire with branch</a></li>
-                        <li><a href="prevention.html" class="animated_link">Prevention Tips</a></li>
-                        <li><a href="faq.html" class="animated_link">Faq</a></li>
-                        <li><a href="contacts.html" class="animated_link">Contact Us</a></li>
-                        <li><a href="https://1.envato.market/OAmnr" class="animated_link" target="_parent">Purchase this template</a><li>
-                    </ul>
-                </nav>
-                <!-- /menu -->
-            </div>
         </div>
     </div>
     <!-- /container -->
@@ -90,10 +67,8 @@
                     <figure><img th:src="@{/images/utech-logo.png}" alt="" width="120" height="150"></figure>
                     <h2>ARTIFICIAL INTELLIGENCE <span>Prolog/Python Group Project</span></h2>
                     <p>COVID-19 expert System</p>
-                    <a href="" class="btn_1 rounded yellow purchase" target="_parent">Generate Report</a>
-                    <hr/>
-                    <span  data-toggle="modal" data-target="#add-symptom" class="btn_1 rounded yellow purchase">Add Symptoms</span>
-                    <a href="#0" id="more_info" data-toggle="modal" data-target="#more-info"><i class="pe-7s-info"></i></a>
+                    <a th:href="@{/result/history}" class="btn_1 rounded yellow purchase" target="_parent">Report History</a>
+                    <a href="#0" id="more_info" data-toggle="modal" data-target="#more-info"><i class="fa fa-users"></i></a>
                 </div>
             </div>
             <div class="col-lg-8">
@@ -116,6 +91,16 @@
                                 <div class="form-group add_top_30">
                                     <label for="temperature">Temperature</label>
                                     <input type="number" name="temperature" id="temperature" class="form-control required">
+                                </div>
+                                <!-- /row-->
+                            </div>
+
+
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Please enter your age</h3>
+                                <div class="form-group add_top_30">
+                                    <label for="temperature">Age</label>
+                                    <input type="number" name="age" id="age" class="form-control required">
                                 </div>
                                 <!-- /row-->
                             </div>
@@ -156,7 +141,7 @@
                                 <h3 class="main_question"><i class="arrow_right"></i>Are you experiencing any difficulty in breathing?</h3>
                                 <div class="form-group">
                                     <label class="container_radio version_2">Yes
-                                        <input type="radio" name="difficultyBreathing" value="Yes" class="required">
+                                        <input type="radio" name="difficultyBreathing" value="Difficulty Breathing" class="required">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">No
@@ -172,7 +157,7 @@
                                 <h3 class="main_question"><i class="arrow_right"></i>Do you have a runny nose?</h3>
                                 <div class="form-group">
                                     <label class="container_radio version_2">Yes
-                                        <input type="radio" name="runnyNose" value="Yes" class="required">
+                                        <input type="radio" name="runnyNose" value="Runny Nose" class="required">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">No
@@ -187,7 +172,7 @@
                                 <h3 class="main_question"><i class="arrow_right"></i>Are you experiencing muscle aches, weakness, or lightheadedness?</h3>
                                 <div class="form-group">
                                     <label class="container_radio version_2">Yes
-                                        <input type="radio" name="aches" value="Yes" class="required">
+                                        <input type="radio" name="aches" value="aches" class="required">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">No
@@ -202,7 +187,7 @@
                                 <h3 class="main_question"><i class="arrow_right"></i>Are you having diarrhea, stomach pain, vomiting?</h3>
                                 <div class="form-group">
                                     <label class="container_radio version_2">Yes
-                                        <input type="radio" name="dspv" value="Yes" class="required">
+                                        <input type="radio" name="dspv" value="dspv" class="required">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">No
@@ -211,6 +196,83 @@
                                     </label>
                                 </div>
                             </div>
+                            
+                            
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Experiencing a loss of taste ?</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Yes
+                                        <input type="radio" name="lass_of_taste" value="Loss of Taste" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">No
+                                        <input type="radio" name="lass_of_taste" value="No" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Experiencing a loss of smell ?</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Yes
+                                        <input type="radio" name="lass_of_smell" value="Loss of Smell" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">No
+                                        <input type="radio" name="lass_of_smell" value="No" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Rash on the skin ?</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Yes
+                                        <input type="radio" name="skin_rash" value="A rash on Skin" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">No
+                                        <input type="radio" name="skin_rash" value="No" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Fever?</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Yes
+                                        <input type="radio" name="fever" value="Fever" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">No
+                                        <input type="radio" name="fever" value="No" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            
+                             <div class="step">
+                                <h3 class="main_question"><i class="arrow_right"></i>Dry Cough?</h3>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Yes
+                                        <input type="radio" name="dry_cough" value="Dry Cough" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">No
+                                        <input type="radio" name="dry_cough" value="No" class="required">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            
                             <!-- /step-->
 
                             <div class="step">
@@ -272,7 +334,7 @@
 
 <div class="container">
     <footer id="home" class="clearfix">
-        <p>© 2020 Artificial Intelligence</p>
+        <p> <a style="cursor: pointer;color:royalblue" data-toggle="modal" data-target="#add-symptom"><b>Click to Add Symptoms</b></a> | © 2020 Artificial Intelligence</p>
     </footer>
     <!-- end footer-->
 </div>
@@ -315,16 +377,17 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="more-infoLabel">Group Members</h4>
+                <h1 class="modal-title" id="more-infoLabel">Group Members</h1>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
                 <ol>
-                    <li>Member 1</li>
-                    <li>Member 2</li>
-                    <li>Member 3</li>
-                    <li>Member 4</li>
-                    <li>Member 5</li>
+                    <l1><h4>Matthew Robotham</h4></l1>
+				    <l1><h4>Vijay Green</h4></l1>
+					<l1><h4>Shaneka Sydial</h4></l1>
+					<l1><h4>Rasheika Panton</h4></l1>
+					<l1><h4>Ricardo Gaynor</h4></l1>
+
                 </ol>
             </div>
             <div class="modal-footer">
@@ -348,6 +411,17 @@
             <div class="modal-body"> 
               
               <form th:action="@{/save/symptom}" method="POST">
+              
+              
+               <div class="form-group add_top_30">
+                    <label for="temperature">Symptom Type</label>
+                    <select name="file_name" id="file_name" class="form-control required">
+                    	<option value="" SELECTED>Please select an option</option>
+                    	<option value="common_symptoms.txt">Common</option>
+                    	<option value="less_common_symptoms.txt">Less Common</option>
+                    	<option value="serious_symptoms.txt">Serious</option>
+                    </select>
+              </div>
               
               <div class="form-group add_top_30">
                     <label for="temperature">Symptom</label>

@@ -1,23 +1,60 @@
 package com.ai.covid.models;
 
+import javax.persistence.*;
 import java.util.Set;
 
-public class CovidInfo {
 
+@Table(name = "covid_info")
+@Entity
+public class CovidInfo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
     private String firstName;
+    @Column
     private String lastName;
+    @Column
     private String email;
+    @Column
     private String mobile;
+    @Column
     private String terms;
+    @Column
     private float temperature;
+    @Column
     private int age;
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "illess_id")
     private Set<KnownIllness> illnesses;
+    @Column
     private String gender;
+    @Column
     private String difficultyBreathing;
+    @Column
     private String runnyNose;
+    @Column
     private String aches;
+    @Column
     private String dspv;
+    @Column
     private String riskMessage;
+    @Column
+    private String lossOfTaste;
+    @Column
+    private String lossOfSmell;
+    @Column
+    private String skinRash;
+    @Column
+    private String fever;
+    @Column
+    private String dryCaugh;
+
+    @Column(columnDefinition = "BOOLEAN DEFAULT false")
+    private Boolean sent;
+
+    @Transient
+    private String imageHolder;
 //    private String shortnessOfBreath;
 //    private String chestPainOrPressure;
 //    private String lossOfMovement;
@@ -156,20 +193,95 @@ public class CovidInfo {
 	public void setRiskMessage(String riskMessage) {
 		this.riskMessage = riskMessage;
 	}
+	
+	
 
-	@Override
+	public String getLossOfTaste() {
+		return lossOfTaste;
+	}
+
+	public void setLossOfTaste(String lossOfTaste) {
+		this.lossOfTaste = lossOfTaste;
+	}
+
+	public String getLossOfSmell() {
+		return lossOfSmell;
+	}
+
+	public void setLossOfSmell(String lossOfSmell) {
+		this.lossOfSmell = lossOfSmell;
+	}
+
+	public String getSkinRash() {
+		return skinRash;
+	}
+
+	public void setSkinRash(String skinRash) {
+		this.skinRash = skinRash;
+	}
+
+	public String getFever() {
+		return fever;
+	}
+
+	public void setFever(String fever) {
+		this.fever = fever;
+	}
+
+	public String getDryCaugh() {
+		return dryCaugh;
+	}
+
+	public void setDryCaugh(String dryCaugh) {
+		this.dryCaugh = dryCaugh;
+	}
+
+	public String getFullName(){
+        return String.format("%s %s", this.getFirstName(), this.getLastName());
+    }
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getImageHolder() {
+		return this.gender.equalsIgnoreCase("Male") ? "male.png" : "feamle.png";
+	}
+
+	public void setImageHolder(String imageHolder) {
+		this.imageHolder = imageHolder;
+	}
+
+    public boolean getSent() {
+        return sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
+    }
+
+    @Override
 	public String toString() {
 		return "CovidInfo [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", mobile="
 				+ mobile + ", terms=" + terms + ", temperature=" + temperature + ", age=" + age + ", illnesses="
 				+ illnesses + ", gender=" + gender + ", difficultyBreathing=" + difficultyBreathing + ", runnyNose="
-				+ runnyNose + ", aches=" + aches + ", dspv=" + dspv + ", getFirstName()=" + getFirstName()
-				+ ", getLastName()=" + getLastName() + ", getEmail()=" + getEmail() + ", getMobile()=" + getMobile()
-				+ ", getTerms()=" + getTerms() + ", getTemperature()=" + getTemperature() + ", getAge()=" + getAge()
-				+ ", getIllnesses()=" + getIllnesses() + ", getGender()=" + getGender() + ", getDifficultyBreathing()="
+				+ runnyNose + ", aches=" + aches + ", dspv=" + dspv + ", riskMessage=" + riskMessage + ", lossOfTaste="
+				+ lossOfTaste + ", lossOfSmell=" + lossOfSmell + ", skinRash=" + skinRash + ", fever=" + fever
+				+ ", dryCaugh=" + dryCaugh + ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName()
+				+ ", getEmail()=" + getEmail() + ", getMobile()=" + getMobile() + ", getTerms()=" + getTerms()
+				+ ", getTemperature()=" + getTemperature() + ", getAge()=" + getAge() + ", getIllnesses()="
+				+ getIllnesses() + ", getGender()=" + getGender() + ", getDifficultyBreathing()="
 				+ getDifficultyBreathing() + ", getRunnyNose()=" + getRunnyNose() + ", getAches()=" + getAches()
-				+ ", getDspv()=" + getDspv() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", getDspv()=" + getDspv() + ", getRiskMessage()=" + getRiskMessage() + ", getLossOfTaste()="
+				+ getLossOfTaste() + ", getLossOfSmell()=" + getLossOfSmell() + ", getSkinRash()=" + getSkinRash()
+				+ ", getFever()=" + getFever() + ", getDryCaugh()=" + getDryCaugh() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-    
+
+	
     
 }
